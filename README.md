@@ -1,5 +1,5 @@
-# gulp-usemin
-> Replaces references to non-optimized scripts or stylesheets into a set of HTML files (or any templates/views).
+# gulp-usemin-query
+> Replaces references to non-optimized scripts or stylesheets into a set of HTML files (or any templates/views) and allows a query-like suffix to be added to file name.
 
 This task is designed for gulp 3.
 > Attention: v0.3.0 options does not compatible with v0.2.0.
@@ -9,13 +9,13 @@ This task is designed for gulp 3.
 First, install `gulp-usemin` as a development dependency:
 
 ```shell
-npm install --save-dev gulp-usemin
+npm install --save-dev gulp-usemin-query
 ```
 
 Then, add it to your `gulpfile.js`:
 
 ```javascript
-var usemin = require('gulp-usemin');
+var usemin = require('gulp-usemin-query');
 var uglify = require('gulp-uglify');
 var minifyHtml = require('gulp-minify-html');
 var minifyCss = require('gulp-minify-css');
@@ -31,6 +31,35 @@ gulp.task('usemin', function() {
     .pipe(gulp.dest('build/'));
 });
 ```
+
+The difference from the usemin plugin is that allows a query string to be appended to file name
+It can be used as static or dynamic in conjunction with gulp-bump/gulp-template
+
+For example
+```html
+<!-- build:js js/lib.js?v=<%= libversion%> -->
+..some lib files...
+<!-- endbuild -->
+<!-- build:js js/app.js?v=<%= appversion%>-->
+..some app files...
+<!-- endbuild -->
+```
+will be translated to
+```html
+    <script src="js/lib.js?v=0.10.6"></script>
+    <script src="js/app.js?v=0.7.3"></script>
+```
+```javascript
+var conf = {app: 'app/', dist: 'dist/'};
+var pkg = require('./package.json');
+gulp.task('usemin-test', function() {
+  return gulp.src(conf.app + 'index.html')
+  .pipe($('template')(pkg))
+  .pipe($('usemin')())
+  .pipe(gulp.dest(conf.dist));
+});
+```
+For regular usemin, see below.
 
 ## API
 

@@ -1,7 +1,7 @@
 {
-	"name": "gulp-usemin",
-	"version": "0.3.3",
-	"description": "Replaces references to non-optimized scripts or stylesheets into a set of HTML files (or any templates/views).",
+	"name": "gulp-usemin-query",
+	"version": "0.0.1",
+	"description": "Replaces references to non-optimized scripts or stylesheets into a set of HTML files (or any templates/views). Based on gulp-usemin by Zont.",
 	"main": "index.js",
 	"dependencies": {
 		"gulp-util": "~2.2.14",
@@ -24,16 +24,18 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/zont/gulp-usemin.git"
+		"url": "https://github.com/skytracer/gulp-usemin"
 	},
 	"keywords": [
 		"gulpplugin",
-		"usemin"
+		"usemin",
+		"query",
+		"rev"
 	],
-	"author": "Alexander Zonov <zont@pochta.ru>",
+	"author": "Sky",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/zont/gulp-usemin/issues"
+		"url": "https://github.com/skytracer/gulp-usemin/issues"
 	},
 	"engines": {
 		"node": ">=0.8"
